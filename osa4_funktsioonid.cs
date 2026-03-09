@@ -4,9 +4,31 @@ using System.Text;
 
 namespace Naidis_IKTpv25
 {
+<<<<<<< HEAD
     class osa4_funktsioonid
     {
         public static void StreamWriter()
+=======
+    internal class osa4_funktsioonid
+    {
+        static List<string> kuude_list = new List<string>()
+        {
+            "Jaanuar",
+            "Veebruar",
+            "Märts",
+            "Aprill",
+            "Mai",
+            "Juuni",
+            "Juuli",
+            "August",
+            "September",
+            "Oktoober",
+            "November",
+            "Detsember"
+        };
+
+        public static void Failikirjutamine()
+>>>>>>> a6ef45118bf66ef5fd4bc7e4d201537049eba000
         {
             try
             {
@@ -17,6 +39,7 @@ namespace Naidis_IKTpv25
                 text.WriteLine(lause);
                 text.Close();
             }
+<<<<<<< HEAD
             catch (Exception e)
             {
                 Console.WriteLine("Mingi viga failiga");
@@ -25,6 +48,15 @@ namespace Naidis_IKTpv25
         }
 
         public static void Faili_lugemine()
+=======
+            catch (Exception)
+            {
+                Console.WriteLine("Mingi viga failiga");
+            }
+        }
+
+        public static void Faililugemine()
+>>>>>>> a6ef45118bf66ef5fd4bc7e4d201537049eba000
         {
             try
             {
@@ -40,7 +72,11 @@ namespace Naidis_IKTpv25
             }
         }
 
+<<<<<<< HEAD
         public static void Ridade_lugemine()
+=======
+        public static void Ridadelugemine()
+>>>>>>> a6ef45118bf66ef5fd4bc7e4d201537049eba000
         {
             List<string> kuude_list = new List<string>();
             try
@@ -56,5 +92,30 @@ namespace Naidis_IKTpv25
                 Console.WriteLine("Viga failiga!");
             }
         }
+<<<<<<< HEAD
+=======
+
+        public static void ListiMuutmineJaKuvamine()
+        {
+            foreach (string kuu in kuude_list)
+            {
+                Console.WriteLine(kuu);
+            }
+
+            // Eemalda "Juuni"
+            kuude_list.Remove("Juuni");
+
+            // Muuda esimest elementi
+            if (kuude_list.Count > 0)
+                kuude_list[0] = "Veeel kuuu";
+
+            Console.WriteLine("--------------Kustutasime juuni-----------");
+
+            foreach (string kuu in kuude_list)
+            {
+                Console.WriteLine(kuu);
+            }
+        }
+>>>>>>> a6ef45118bf66ef5fd4bc7e4d201537049eba000
     }
 }
