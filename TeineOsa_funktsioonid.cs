@@ -245,7 +245,6 @@ namespace Naidis_IKTpv25
         }
         public void Pood()
         {
-            
         }
     }
 }
