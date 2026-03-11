@@ -8,7 +8,7 @@ namespace Failitöötlus
     {
         public static void Main(string[] args)
         {
-
+             funktsioonid.KoostisosadeMuutmine();
         }
     }
 }
