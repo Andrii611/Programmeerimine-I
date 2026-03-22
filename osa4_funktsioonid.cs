@@ -1,66 +1,59 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Numerics;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Naidis_IKTpv25
+namespace Naidis_csharp
 {
-<<<<<<< HEAD
-    class osa4_funktsioonid
-    {
-        public static void StreamWriter()
-=======
     internal class osa4_funktsioonid
     {
         static List<string> kuude_list = new List<string>()
         {
-            "Jaanuar",
-            "Veebruar",
-            "Märts",
-            "Aprill",
-            "Mai",
-            "Juuni",
-            "Juuli",
-            "August",
-            "September",
-            "Oktoober",
-            "November",
-            "Detsember"
+            "jaanuar",
+            "veebruar",
+            "märts",
+            "aprill",
+            "mai",
+            "juuni",
+            "juuli",
+            "august",
+            "september",
+            "oktoober",
+            "november",
+            "detsember"
         };
 
-        public static void Failikirjutamine()
->>>>>>> a6ef45118bf66ef5fd4bc7e4d201537049eba000
+        public static void Faili_kirjutamine()
         {
             try
             {
-                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Kuud.txt"); //@"..\..\..\Kuud.txt"
+                string path =  @"..\..\..\Kuud.txt"; //@"..\..\..\Kuud.txt"
                 StreamWriter text = new StreamWriter(path, true); // true = lisa lõppu
                 Console.WriteLine("Sisesta mingi tekst: ");
                 string lause = Console.ReadLine();
                 text.WriteLine(lause);
                 text.Close();
+                using (StreamWriter sw = new StreamWriter(path, true))
+                {
+                    sw.WriteLine("Midagi");
+                } // Fail suletakse automaatselt siin
             }
-<<<<<<< HEAD
             catch (Exception e)
             {
                 Console.WriteLine("Mingi viga failiga");
             }
-
+           
         }
-
         public static void Faili_lugemine()
-=======
-            catch (Exception)
-            {
-                Console.WriteLine("Mingi viga failiga");
-            }
-        }
-
-        public static void Faililugemine()
->>>>>>> a6ef45118bf66ef5fd4bc7e4d201537049eba000
         {
+
             try
             {
-                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Kuud.txt");
+                string path = @"..\..\..\Kuud.txt";
                 StreamReader text = new StreamReader(path);
                 string laused = text.ReadToEnd();
                 text.Close();
@@ -72,50 +65,96 @@ namespace Naidis_IKTpv25
             }
         }
 
-<<<<<<< HEAD
-        public static void Ridade_lugemine()
-=======
-        public static void Ridadelugemine()
->>>>>>> a6ef45118bf66ef5fd4bc7e4d201537049eba000
+        public static void Ridade_lugemine(string file)
         {
+            
             List<string> kuude_list = new List<string>();
             try
             {
-                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Kuud.txt");
+
+                string path = @$"..\..\..\{file}";
                 foreach (string rida in File.ReadAllLines(path))
                 {
                     kuude_list.Add(rida);
+
                 }
+                foreach (string i in kuude_list) Console.WriteLine(i);
+                
             }
+            
             catch (Exception)
             {
                 Console.WriteLine("Viga failiga!");
             }
-        }
-<<<<<<< HEAD
-=======
 
-        public static void ListiMuutmineJaKuvamine()
+        }
+        public static List<string> Ridade_lugemine_listiks(string file)
         {
-            foreach (string kuu in kuude_list)
+
+            List<string> kuude_list = new List<string>();
+            try
             {
-                Console.WriteLine(kuu);
+
+                string path = @$"..\..\..\{file}";
+                foreach (string rida in File.ReadAllLines(path))
+                {
+                    kuude_list.Add(rida);
+
+                }                
+
             }
 
-            // Eemalda "Juuni"
-            kuude_list.Remove("Juuni");
+            catch (Exception)
+            {
+                Console.WriteLine("Viga failiga!");
+            }
+            return kuude_list;
+          
+
+        }
+        public static List<string> Listi_muutmine_kuvamine()
+        {
+    
+            foreach (string k in kuude_list)
+            {
+                Console.WriteLine(k);
+            }
+
+            Console.WriteLine("sisesta kuu kustutamiseks");
+           
+            string kuu = Console.ReadLine();
+            kuude_list.Remove($"{kuu}");
 
             // Muuda esimest elementi
             if (kuude_list.Count > 0)
                 kuude_list[0] = "Veeel kuuu";
 
-            Console.WriteLine("--------------Kustutasime juuni-----------");
+            Console.WriteLine("--------------Kustutasime kuu-----------");
 
-            foreach (string kuu in kuude_list)
+            foreach (string k in kuude_list)
             {
-                Console.WriteLine(kuu);
+                Console.WriteLine(k);
             }
+
+            return kuude_list;
         }
->>>>>>> a6ef45118bf66ef5fd4bc7e4d201537049eba000
+        public static void Otsing_nimekirjast()
+        {
+            kuude_list = Ridade_lugemine_listiks("Kuud.txt");
+            Console.WriteLine("Sisesta kuu nimi, mida otsida:");
+            string otsitav = Console.ReadLine();
+
+            if (kuude_list.Contains(otsitav))
+                Console.WriteLine("Kuu " + otsitav + " on olemas.");
+            else
+                Console.WriteLine("Sellist kuud pole.");
+        }
+        public static void Listi_salvestamine()
+        {
+            string path = @"..\..\..\Kuud.txt";
+            File.WriteAllLines(path, kuude_list);
+            Console.WriteLine("Andmed on salvestatud.");
+
+        }
     }
 }
