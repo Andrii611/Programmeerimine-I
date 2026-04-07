@@ -15,9 +15,7 @@ namespace Itaalia_toit
             Koostisosad = koostisosad;
             Hind = hind;
         }
-        //meetod, mis teeb objektist tektsirea
-        //Tulemus: "Nimetus;Koostisosad1,Koostisosad2,...;Hind"
-        //Näiteks: "Pizza;Tomat,Juust,Peperoni;12.99"
+
 
         public string VormindaFailiJaoksrea()
         {
